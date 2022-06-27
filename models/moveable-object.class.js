@@ -4,6 +4,10 @@ class MovableObject {
     img;
     height = 150;
     width = 100;
+    //iamges to animate character / object
+    imageCache = {};
+    currentImage = 0;
+    speed = 0.15;
 
 
     //loadImage('img/test.png');
@@ -12,12 +16,31 @@ class MovableObject {
         this.img = new Image();  // ist gleich wie this.img = document.getElementById('image') <img id = "image" src>
         this.img.src = path;
     }
+    
+    /**
+     * 
+     * @param {Array} arr - ['img/image1.png, img/image2.png......]
+     */
+    loadImages(arr) {
+            arr.forEach((path)=> {
+                let img = new Image();
+                //path given to img from array -- converted from string to array
+                img.src = path;
+                // [path] is key in the json being pushed
+                this.imageCache[path] = img;
+            });
+        
+    }
 
     moveRight() {
         console.log('Moving right');
     }
 
-    moveLeft() {
-        
+    moveLeft(){
+        setInterval(() => {
+
+            //this.x = this.x - 10;
+            this.x -= this.speed;
+            }, 1000/60);
     }
 }
