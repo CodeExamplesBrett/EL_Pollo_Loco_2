@@ -8,6 +8,7 @@ class MovableObject {
     imageCache = {};
     currentImage = 0;
     speed = 0.15;
+    otherDirection = false;
 
 
     //loadImage('img/test.png');
@@ -18,7 +19,7 @@ class MovableObject {
     }
     
     /**
-     * 
+     * Images für character Bewegung Animation..
      * @param {Array} arr - ['img/image1.png, img/image2.png......]
      */
     loadImages(arr) {
