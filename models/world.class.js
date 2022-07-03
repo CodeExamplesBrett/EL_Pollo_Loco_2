@@ -1,39 +1,6 @@
 class World {
     character = new Character();
-
-    enemies = [
-    new Chicken(),
-    new Chicken(),
-    new Chicken()
-    ];
-    
-
-    backgroundObjects = [
-
-        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', -719),
-        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', -719),
-        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/2.png', -719),
-        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/2.png', -719),
-
-        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', 0),
-        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/1.png', 0),
-        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/1.png', 0),
-        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', 0), 
-        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', 719),
-        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/2.png', 719),
-        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/2.png', 719),
-        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/2.png', 719),
-
-        new BackgroundObject('img/5.Fondo/Capas/5.cielo_1920-1080px.png', 719*2),
-        new BackgroundObject('img/5.Fondo/Capas/3.Fondo3/1.png', 719*2),
-        new BackgroundObject('img/5.Fondo/Capas/2.Fondo2/1.png', 719*2),
-        new BackgroundObject('img/5.Fondo/Capas/1.suelo-fondo1/1.png', 719*2) 
-    ];
-
-    clouds = [
-        new Cloud()
-    ];
-
+    level = level1;
     canvas;
     ctx;
     keyboard;
@@ -58,10 +25,10 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.backgroundObjects);
+        this.addObjectsToMap(this.level.backgroundObjects);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.enemies);
 
         this.ctx.translate(-this.camera_x, 0);
         
