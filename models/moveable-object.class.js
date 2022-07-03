@@ -10,6 +10,10 @@ class MovableObject {
     speed = 0.15;
     otherDirection = false;
 
+    applyGravity() {
+        
+    }
+
 
     //loadImage('img/test.png');
     //PAth von untergeordinate class zB character.class.js
@@ -31,6 +35,14 @@ class MovableObject {
                 this.imageCache[path] = img;
             });
         
+    }
+
+    playAnimation(images) {
+                let i = this.currentImage % this.IMAGES_WALKING.length;  // let i =0/6 => 0 rest 0... =1/6 => 0 rest 1 ...... (current image defined as = 0 in MoveableObject)
+                // i = 0,1,2,3,4,5,...0,1,2,3,4,5.........
+                let path = images[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
     }
 
     moveRight() {
