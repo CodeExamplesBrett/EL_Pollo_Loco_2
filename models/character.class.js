@@ -1,6 +1,6 @@
 class Character extends MovableObject {
     x = 120;
-    y = 130;
+    y = 30;
     height = 300;
     width = 100;
     speed = 10;
@@ -18,7 +18,7 @@ class Character extends MovableObject {
     constructor() {
         super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
-
+        this.applyGravity();
         this.animate();
     }
 
