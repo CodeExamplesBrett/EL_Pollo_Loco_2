@@ -14,7 +14,7 @@ class MovableObject {
 
     applyGravity() {
         setInterval(()=>{
-            if(this.IsAboveGround()){
+            if(this.IsAboveGround() || this.speedY > 0){
             this.y -= this.speedY;
             this.speedY -= this.acceleration;
         }
@@ -22,7 +22,7 @@ class MovableObject {
     }
 
     IsAboveGround(){
-        return this.y < 180;
+        return this.y < 130;
     }
 
     
@@ -33,6 +33,18 @@ class MovableObject {
     loadImage(path) {
         this.img = new Image();  // ist gleich wie this.img = document.getElementById('image') <img id = "image" src>
         this.img.src = path;
+    }
+
+    draw(ctx){
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    drawFrame(ctx){
+        ctx.beginPath();
+        ctx.lineWidth = '5';
+        ctx.strokeStyle = 'blue';
+        ctx.rect(this.x, this.y, this.width, this.height);
+        ctx.stroke();
     }
     
     /**
@@ -46,9 +58,10 @@ class MovableObject {
                 img.src = path;
                 // [path] is key in the json being pushed
                 this.imageCache[path] = img;
-            });
-        
+            });  
     }
+
+    
 
     playAnimation(images) {
                 let i = this.currentImage % this.IMAGES_WALKING.length;  // let i =0/6 => 0 rest 0... =1/6 => 0 rest 1 ...... (current image defined as = 0 in MoveableObject)
@@ -59,14 +72,17 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('Moving right');
+        this.x += this.speed;
+        
+        
     }
 
     moveLeft(){
-        setInterval(() => {
+        this.x -= this.speed;
+             
+    }
 
-            //this.x = this.x - 10;
-            this.x -= this.speed;
-            }, 1000/60);
+    jump(){
+        this.speedY = 30;
     }
 }
