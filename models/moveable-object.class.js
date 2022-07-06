@@ -11,6 +11,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
 
     applyGravity() {
         setInterval(()=>{
@@ -25,9 +26,6 @@ class MovableObject {
         return this.y < 130;
     }
 
-    
-
-
     //loadImage('img/test.png');
     //PAth von untergeordinate class zB character.class.js
     loadImage(path) {
@@ -40,11 +38,32 @@ class MovableObject {
     }
 
     drawFrame(ctx){
+        if(this instanceof Character || this instanceof Chicken) {
         ctx.beginPath();
         ctx.lineWidth = '5';
         ctx.strokeStyle = 'blue';
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
+        }
+    }
+
+    // character.isColliding(chicken);
+    isColliding(mo){
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y && 
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+    }
+
+    hit(){
+        this.energy -= 5;
+        if(this.energy < 0){
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
     }
     
     /**
@@ -61,8 +80,6 @@ class MovableObject {
             });  
     }
 
-    
-
     playAnimation(images) {
                 let i = this.currentImage % this.IMAGES_WALKING.length;  // let i =0/6 => 0 rest 0... =1/6 => 0 rest 1 ...... (current image defined as = 0 in MoveableObject)
                 // i = 0,1,2,3,4,5,...0,1,2,3,4,5.........
@@ -72,17 +89,16 @@ class MovableObject {
     }
 
     moveRight() {
-        this.x += this.speed;
-        
-        
+        this.x += this.speed; 
     }
 
     moveLeft(){
-        this.x -= this.speed;
-             
+        this.x -= this.speed;      
     }
 
     jump(){
         this.speedY = 30;
     }
+
+    
 }
