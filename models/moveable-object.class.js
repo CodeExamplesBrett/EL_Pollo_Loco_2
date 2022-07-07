@@ -1,17 +1,10 @@
-class MovableObject {
-    x = 120;
-    y = 280;
-    img;
-    height = 150;
-    width = 100;
-    //iamges to animate character / object
-    imageCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(()=>{
@@ -26,27 +19,6 @@ class MovableObject {
         return this.y < 130;
     }
 
-    //loadImage('img/test.png');
-    //PAth von untergeordinate class zB character.class.js
-    loadImage(path) {
-        this.img = new Image();  // ist gleich wie this.img = document.getElementById('image') <img id = "image" src>
-        this.img.src = path;
-    }
-
-    draw(ctx){
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx){
-        if(this instanceof Character || this instanceof Chicken) {
-        ctx.beginPath();
-        ctx.lineWidth = '5';
-        ctx.strokeStyle = 'blue';
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
-        }
-    }
-
     // character.isColliding(chicken);
     isColliding(mo){
         return this.x + this.width > mo.x &&
@@ -59,29 +31,23 @@ class MovableObject {
         this.energy -= 5;
         if(this.energy < 0){
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
     }
 
     isDead() {
         return this.energy == 0;
     }
-    
-    /**
-     * Images für character Bewegung Animation..
-     * @param {Array} arr - ['img/image1.png, img/image2.png......]
-     */
-    loadImages(arr) {
-            arr.forEach((path)=> {
-                let img = new Image();
-                //path given to img from array -- converted from string to array
-                img.src = path;
-                // [path] is key in the json being pushed
-                this.imageCache[path] = img;
-            });  
-    }
 
+    isHurt(){
+        let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
+        timepassed = timepassed / 1000; //Difference in seconds
+        return timepassed < 1;  
+    }
+    
     playAnimation(images) {
-                let i = this.currentImage % this.IMAGES_WALKING.length;  // let i =0/6 => 0 rest 0... =1/6 => 0 rest 1 ...... (current image defined as = 0 in MoveableObject)
+                let i = this.currentImage % images.length;  // let i =0/6 => 0 rest 0... =1/6 => 0 rest 1 ...... (current image defined as = 0 in MoveableObject)
                 // i = 0,1,2,3,4,5,...0,1,2,3,4,5.........
                 let path = images[i];
                 this.img = this.imageCache[path];
