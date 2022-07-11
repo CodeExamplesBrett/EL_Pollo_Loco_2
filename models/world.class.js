@@ -16,6 +16,7 @@ class World {
         this.draw();
         this.setworld();
         this.checkCollisions();
+        this.checkCollisionsCoin();
         this.run();
     }
 
@@ -37,19 +38,27 @@ class World {
         }
     }
 
-    
-
     checkCollisions(){
-        
             this.level.enemies.forEach((enemy)=> {
                 if(this.character.isColliding(enemy)) {
-                    //console.log('Collision with Character', enemy);
+                    console.log('Collision with Character', enemy);
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                     //console.log('Energy level', this.character.energy);
                 }
             });
     }
+
+    checkCollisionsCoin(){
+        this.level.coins.forEach((coin)=> {
+            if(this.character.isColliding(coin)) {
+                console.log('Collision with coin', coin) ; 
+                this.character.collectCoin();
+                //this.statusBar.setPercentage(this.character.energy);
+                //console.log('Energy level', this.character.energy);
+            }
+        });
+}
 
     draw(){
         //clears / deletes the canvas
@@ -63,6 +72,7 @@ class World {
         //  ------- Space for fixed objects --------
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0); // Forwards
+         //  ------- Space for fixed objects --------
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);

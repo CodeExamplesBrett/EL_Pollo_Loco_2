@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coinCollection = 0;
     lastHit = 0;
 
     applyGravity() {
@@ -39,6 +40,7 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+        //console.log(this.energy)
     }
 
     isDead() {
@@ -49,6 +51,11 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
         timepassed = timepassed / 1000; //Difference in seconds
         return timepassed < 1;  
+    }
+
+    collectCoin(){
+        this.coinCollection += 1;
+        console.log('collection', this.coinCollection)
     }
     
     playAnimation(images) {

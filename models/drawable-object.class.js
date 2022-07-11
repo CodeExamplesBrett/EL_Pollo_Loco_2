@@ -27,7 +27,7 @@ class DrawableObject {
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
         }
-    }
+    } 
 
     /**
      * Images für character Bewegung Animation..
