@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coinBar = new CoinBar();
     throwableObjects = [];
      
     constructor(canvas, keyboard) {
@@ -16,7 +17,7 @@ class World {
         this.draw();
         this.setworld();
         this.checkCollisions();
-        this.checkCollisionsCoin();
+        
         this.run();
     }
 
@@ -28,6 +29,7 @@ class World {
         setInterval(() => {
             this.checkCollisions()
             this.checkThrowObjects()
+            this.checkCollisionsCoin();
             },200);
         }
 
@@ -41,7 +43,7 @@ class World {
     checkCollisions(){
             this.level.enemies.forEach((enemy)=> {
                 if(this.character.isColliding(enemy)) {
-                    console.log('Collision with Character', enemy);
+                    //c onsole.log('Collision with Character', enemy);
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                     //console.log('Energy level', this.character.energy);
@@ -54,7 +56,8 @@ class World {
             if(this.character.isColliding(coin)) {
                 console.log('Collision with coin', coin) ; 
                 this.character.collectCoin();
-                //this.statusBar.setPercentage(this.character.energy);
+                this.coinBar.setCoinCount(this.character.coinCollection);
+                this.level.coins.splice(coin)
                 //console.log('Energy level', this.character.energy);
             }
         });
@@ -71,6 +74,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0); // Back
         //  ------- Space for fixed objects --------
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0); // Forwards
          //  ------- Space for fixed objects --------
 
