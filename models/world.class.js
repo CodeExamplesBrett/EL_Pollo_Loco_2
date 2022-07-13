@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     coinBar = new CoinBar();
+    bottleBar = new BottleBar();
     throwableObjects = [];
      
     constructor(canvas, keyboard) {
@@ -16,8 +17,6 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setworld();
-        this.checkCollisions();
-        
         this.run();
     }
 
@@ -30,11 +29,12 @@ class World {
             this.checkCollisions()
             this.checkThrowObjects()
             this.checkCollisionsCoin();
+            this.checkCollisionsBottle();
             },200);
         }
 
     checkThrowObjects(){
-        if(this.keyboard.D){
+        if(this.keyboard.D && this.character.bottleCollection >= 1){
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
         }
@@ -43,7 +43,7 @@ class World {
     checkCollisions(){
             this.level.enemies.forEach((enemy)=> {
                 if(this.character.isColliding(enemy)) {
-                    //c onsole.log('Collision with Character', enemy);
+                    //console.log('Collision with Character', enemy);
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                     //console.log('Energy level', this.character.energy);
@@ -52,16 +52,32 @@ class World {
     }
 
     checkCollisionsCoin(){
-        this.level.coins.forEach((coin)=> {
+        this.level.coins.forEach((coin, index)=> {
             if(this.character.isColliding(coin)) {
-                console.log('Collision with coin', coin) ; 
+                console.log('Collision with coin', coin);
+                this.collectedCoins++;
+                this.level.coins.splice(index, 1);
                 this.character.collectCoin();
                 this.coinBar.setCoinCount(this.character.coinCollection);
-                this.level.coins.splice(coin)
+                
                 //console.log('Energy level', this.character.energy);
             }
         });
 }
+
+    checkCollisionsBottle(){
+        this.level.bottles.forEach((bottle, index)=> {
+            if(this.character.isColliding(bottle)) {
+                console.log('Collision with bottle', bottle);
+                this.collectedBottles++;
+                this.level.bottles.splice(index, 1);
+                this.character.collectBottle();
+                this.bottleBar.setBottleCount(this.character.bottleCollection);
+                
+                //console.log('Energy level', this.character.energy);
+            }
+        });
+    }
 
     draw(){
         //clears / deletes the canvas
@@ -75,12 +91,14 @@ class World {
         //  ------- Space for fixed objects --------
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
+        this.addToMap(this.bottleBar);
         this.ctx.translate(this.camera_x, 0); // Forwards
          //  ------- Space for fixed objects --------
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
         this.addObjectsToMap(this.level.enemies);

@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     coinCollection = 0;
+    bottleCollection = 0;
     lastHit = 0;
 
     applyGravity() {
@@ -55,10 +56,19 @@ class MovableObject extends DrawableObject {
 
     collectCoin(){
         this.coinCollection += 1;
-        if(this.coinCollection >=   5){
+        if(this.coinCollection >= 5){
             this.coinCollection = 5; 
         } 
         console.log('collection', this.coinCollection)
+    }
+
+    collectBottle(){
+        this.bottleCollection += 1;
+        if(this.bottleCollection >= 5){
+            this.bottleCollection = 5; 
+        } 
+        
+        console.log('collection bottle', this.bottleCollection)
     }
     
     playAnimation(images) {

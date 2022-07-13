@@ -4,7 +4,12 @@ const level1 = new Level([
     new Chicken(),
     new Chicken(),
     new Chicken(),
-     new Endboss()
+    new Chick(),
+    new Chick(),
+    new Chick(),
+    new Chick(),
+    new Chick(),
+    new Endboss()
     ],
     [
         new Cloud()
@@ -42,6 +47,13 @@ const level1 = new Level([
         new Coin(),
         new Coin(),
         new Coin()
+    ],
+    [
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle()
     ],
     [
         new ThrowableObject('')
