@@ -30,13 +30,15 @@ class World {
             this.checkThrowObjects()
             this.checkCollisionsCoin();
             this.checkCollisionsBottle();
-            },200);
+            },100);
         }
 
     checkThrowObjects(){
         if(this.keyboard.D && this.character.bottleCollection >= 1){
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.character.bottleCollection -= 1;
+            this.bottleBar.setBottleCount(this.character.bottleCollection);
         }
     }
 
@@ -59,7 +61,6 @@ class World {
                 this.level.coins.splice(index, 1);
                 this.character.collectCoin();
                 this.coinBar.setCoinCount(this.character.coinCollection);
-                
                 //console.log('Energy level', this.character.energy);
             }
         });
@@ -68,16 +69,26 @@ class World {
     checkCollisionsBottle(){
         this.level.bottles.forEach((bottle, index)=> {
             if(this.character.isColliding(bottle)) {
-                console.log('Collision with bottle', bottle);
+                //console.log('Collision with bottle', bottle);
                 this.collectedBottles++;
                 this.level.bottles.splice(index, 1);
                 this.character.collectBottle();
                 this.bottleBar.setBottleCount(this.character.bottleCollection);
-                
                 //console.log('Energy level', this.character.energy);
             }
         });
     }
+
+    checkCollisionsEndboss(){
+        this.level.enemies.forEach((enemy)=> {
+            if(this.throwableObjects.isColliding(enemy)) {
+                console.log('Collision with bottle', enemy);
+                //this.character.hit();
+                //this.statusBar.setPercentage(this.character.energy);
+                //console.log('Energy level', this.character.energy);
+            }
+        });
+}
 
     draw(){
         //clears / deletes the canvas
