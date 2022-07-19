@@ -30,16 +30,16 @@ class BottleBar extends DrawableObject {
     resolveImageIndex() {
         if (this.B_count == 0){
             return 0;
-        } else if (this.B_count == 1){
+        } else if (this.B_count >= 1 && this.B_count < 3){
             return 1;
-        } else if (this.B_count == 2){
+        } else if (this.B_count >= 3 && this.B_count < 5){
             return 2;
-        } else if (this.B_count == 3){
+        } else if (this.B_count >= 5 && this.B_count < 7){
             return 3;
-        } else if (this.B_count == 4){
+        } else if (this.B_count >= 7 && this.B_count < 9){
              return 4;
-        } else if (this.B_count == 5){
+        } else if (this.B_count >= 9){
             return 5;
-         }
+        }
     } 
 }
