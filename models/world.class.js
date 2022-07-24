@@ -106,19 +106,28 @@ checkCollisionsThrowObjects(){     // bottle with endboss
 checkCollisionsTop(){
     this.level.enemies.forEach((enemy, index)=> {
         if(this.character.isCollidingTop(enemy) && this.character.speedY < 0) {
-            console.log('Collision Top', enemy);
+            //console.log('Collision Top', enemy);
             this.deadenemies++;
+            console.log('from top', this.fromTop);
             this.level.enemies[index].dead = true;
             this.level.enemies[index].speed = 0;
             
-            console.log('from top', enemy)
+            //console.log('from top', enemy)
         }
     }); 
 }
 
+/* delayHurt(){
+    setTimeout(() => {
+        this.fromTop = false;
+        },500);
+        console.log('from top_222', this.fromTop);
+
+} */
+
 checkNearEndboss(){
     if(this.character.x > 1800){
-        this.nearEndboss = true;
+        this.level.enemies[0].moveEndboss();
     }
 }
          

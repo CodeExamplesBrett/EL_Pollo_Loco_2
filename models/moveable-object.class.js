@@ -7,8 +7,10 @@ class MovableObject extends DrawableObject {
     coinCollection = 0;
     bottleCollection = 0;
     lastHit = 0;
+    fromTop = false;
 
-    jump_Delta = 0;
+    nearEndboss = false;
+
 
     offset = {
         top: 0,
@@ -46,10 +48,12 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingTop(mo){
+        this.lastJumpFromTop = new Date().getTime();
         return this.y + this.height > mo.y && 
             this.y + this.height < mo.y + mo.height &&
             this.x + this.width + 30  > mo.x &&
             this.x + this.width - 30 < mo.x + mo.width; 
+            
     }
 
     hit(amount){
@@ -70,6 +74,14 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
         timepassed = timepassed / 1000; //Difference in seconds
         return timepassed < 1;  
+    }
+
+    isJumpingFromTop(){
+        let timepassed = new Date().getTime() - this.lastJumpFromTop; // Difference in ms
+        timepassed = timepassed / 1000; //Difference in seconds
+        if(timepassed < 1){
+            return true;
+        }
     }
 
     collectCoin(){
@@ -95,6 +107,10 @@ class MovableObject extends DrawableObject {
                 let path = images[i];
                 this.img = this.imageCache[path];
                 this.currentImage++;
+    }
+
+    moveEndboss(){
+        return this.nearEndboss = true;
     }
 
     moveRight() {

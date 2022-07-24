@@ -3,7 +3,9 @@ let world;
 let keyboard = new Keyboard();
 
 function init(){
+    //document.getElementById('startScreen').classList.add('d-none');
     //Define canvas in html Element with id= "canvas"
+    //loadChickens();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     
