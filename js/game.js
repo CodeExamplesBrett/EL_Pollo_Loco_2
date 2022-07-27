@@ -2,10 +2,11 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init(){
-    //document.getElementById('startScreen').classList.add('d-none');
+function startGame(){
+    document.getElementById('startScreen').classList.add('d-none');
+    document.getElementById('start-game').classList.add('d-none');
     //Define canvas in html Element with id= "canvas"
-    //loadChickens();
+    loadChickens();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     
@@ -33,7 +34,7 @@ window.addEventListener('keydown', (e)=> {
     if(e.keyCode == 68){
         keyboard.D = true;
     }
-//console.log(e);
+    //console.log(e);
 });
 
 window.addEventListener('keyup', (e)=> {

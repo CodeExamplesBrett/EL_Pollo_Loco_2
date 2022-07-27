@@ -9,7 +9,7 @@ class Character extends MovableObject {
         top: 100,
         left: 30,
         right: 30,
-        bottom: 20
+        bottom: 0
     };
 
     IMAGES_WALKING = ['img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
@@ -82,7 +82,7 @@ class Character extends MovableObject {
             }
 
             //console.log('this.speedY', this.speedY);
-            if(this.world.keyboard.SPACE && !this.IsAboveGround()){
+            if(this.world.keyboard.UP && !this.IsAboveGround()){
                 this.jump();
                 this.jumping_sound.play();
             }
@@ -99,7 +99,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.dying_sound.play();
 
-            } else if (this.isHurt()){
+            } else if (this.isHurt() && !this.IsAboveGround()){
                     this.playAnimation(this.IMAGES_HURT);
                     this.hurt_sound.play();
             } else if (this.IsAboveGround()){

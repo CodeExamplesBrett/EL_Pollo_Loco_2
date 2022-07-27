@@ -1,12 +1,15 @@
 class Chick extends MovableObject {
     y = 375;
     x = 120;
+
+    xTarget = this.x - 40;
+    yTarget = this.y - 40;
     
     height = 50;
     width = 30;
     dead = false;
 
-
+   
     IMAGES_WALKING = ['img/3.Secuencias_Enemy_básico/Versión_pollito/1.Paso_derecho.png',
                         'img/3.Secuencias_Enemy_básico/Versión_pollito/2.Centro.png',
                         'img/3.Secuencias_Enemy_básico/Versión_pollito/3.Paso_izquierdo.png'

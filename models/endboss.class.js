@@ -4,6 +4,13 @@ class Endboss extends MovableObject {
     width = 250;
     speed = 0.15;
     NearEndboss = false;
+
+    offset = {
+        top: 100,
+        left: 30,
+        right: 30,
+        bottom: 80
+    };
     
 
     IMAGES_ANGRY = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
@@ -21,6 +28,16 @@ class Endboss extends MovableObject {
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G3.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G4.png'
                   
+];
+
+IMAGES_ATTACK = ['img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G13.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G14.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G15.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G16.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G17.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G18.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G19.png',
+                'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/2.Ataque/G20.png'
 ];
 
 IMAGES_HURT = [
@@ -42,6 +59,7 @@ constructor() {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_WALKING);
+    this.loadImages(this.IMAGES_ATTACK);
     this.speed = 0.5;
     this.x = 2500;
     this.animate();
@@ -56,7 +74,10 @@ animate(){
     }, 1000/60);
 
     setInterval(()=> {
-        this.playAnimation(this.IMAGES_ANGRY);
+        if(this.nearEndboss == true){
+            this.playAnimation(this.IMAGES_ATTACK);
+        } else if (this.nearEndboss == false){
+        this.playAnimation(this.IMAGES_ANGRY);}
     },150);
 
     setInterval(()=> {
@@ -69,7 +90,7 @@ animate(){
              (this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT);
                 //this.hurt_sound.play();
-        }
+        } 
             
     },50);
 }

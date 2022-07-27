@@ -1,6 +1,9 @@
 class Chicken extends MovableObject {
     y = 335;
     x = 120;
+
+    xTarget = this.x;
+    yTarget = this.y;
     speed = 0.15; 
 
     dead = false;

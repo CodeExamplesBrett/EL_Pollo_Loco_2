@@ -19,6 +19,13 @@ class MovableObject extends DrawableObject {
         bottom: 0
     };
 
+    offsetCollTop = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+    };
+
     collectBottle_sound = new Audio('./audio/bottle.mp3');
 
     applyGravity() {
@@ -48,11 +55,10 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingTop(mo){
-        this.lastJumpFromTop = new Date().getTime();
         return this.y + this.height > mo.y && 
-            this.y + this.height < mo.y + mo.height &&
-            this.x + this.width + 30  > mo.x &&
-            this.x + this.width - 30 < mo.x + mo.width; 
+            this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom &&
+            this.x + this.width > mo.x &&
+            this.x + this.width < (mo.x + mo.width + 70); 
             
     }
 
@@ -74,14 +80,6 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
         timepassed = timepassed / 1000; //Difference in seconds
         return timepassed < 1;  
-    }
-
-    isJumpingFromTop(){
-        let timepassed = new Date().getTime() - this.lastJumpFromTop; // Difference in ms
-        timepassed = timepassed / 1000; //Difference in seconds
-        if(timepassed < 1){
-            return true;
-        }
     }
 
     collectCoin(){

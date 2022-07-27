@@ -10,6 +10,8 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     throwableObjects = [];
+
+    gameOver = false;
      
     constructor(canvas, keyboard) {
         //context wird für canvas definiert
@@ -48,7 +50,7 @@ class World {
 
     checkCollisions(){
             this.level.enemies.forEach((enemy)=> {
-                if(this.character.isColliding(enemy)) {
+                if(this.character.isColliding(enemy) && !enemy.dead && !this.character.isCollidingTop(enemy)) {
                     //console.log('Collision with Character', enemy);
                     this.character.hit(1);
                     this.statusBar.setPercentage(this.character.energy);
@@ -112,6 +114,8 @@ checkCollisionsTop(){
             this.level.enemies[index].dead = true;
             this.level.enemies[index].speed = 0;
             
+
+            
             //console.log('from top', enemy)
         }
     }); 
@@ -126,10 +130,12 @@ checkCollisionsTop(){
 } */
 
 checkNearEndboss(){
-    if(this.character.x > 1800){
+    if(this.character.x > 2100){
         this.level.enemies[0].moveEndboss();
     }
 }
+
+
          
          
 

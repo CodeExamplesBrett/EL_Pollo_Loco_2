@@ -35,19 +35,19 @@
     <title>El Pollo Loco</title>
     
 </head>
-<body onload="init()">
+<body>
 
     
     <!--<img src = './img/start/Background.png' class="background-image">-->
 <div class="frame">
     <div id="game-container" class="game-container">
-        <!--<img src="./img/9.Intro _ Outro Image/Start Screen/Opción 1.png" class="start-screen-img" id="startScreen">-->
+        <img src="./img/9.Intro _ Outro Image/Start Screen/Opción 1.png" class="start-screen-img" id="startScreen">
     
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <button class="start-game" onclick="startGame()">Start Game</button>
+        <button class="start-game" id="start-game"  onclick="startGame()">Start Game</button>
 
-        <div class="button-description">
+        <div class="button-description" id="button-description">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-caret-left-square svg-symbol" viewBox="0 0 16 16">
             <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
             <path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082z"/>
@@ -69,12 +69,13 @@
 
           <span class="button-text">Jump</span>
 
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-hdmi svg-symbol" viewBox="0 0 16 16">
+          <!--<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-hdmi svg-symbol" viewBox="0 0 16 16">
             <path d="M2.5 7a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11Z"/>
             <path d="M1 5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h.293l.707.707a1 1 0 0 0 .707.293h10.586a1 1 0 0 0 .707-.293l.707-.707H15a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H1Zm0 1h14v3h-.293a1 1 0 0 0-.707.293l-.707.707H2.707L2 9.293A1 1 0 0 0 1.293 9H1V6Z"/>
-          </svg>
+          </svg>-->
+          <span style="font-size: 30px">D</span>
 
-          <span class="button-text">Throw Bottle</span>
+          <span class="button-text">- Key = Throw Bottle</span>
 
           
 
