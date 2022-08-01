@@ -58,7 +58,7 @@ class World {
                     //console.log('Collision with Character', enemy);
                     this.character.hit(1);
                     this.statusBar.setPercentage(this.character.energy);
-                    console.log('character e', this.character.energy)
+                    //console.log('character e', this.character.energy)
                     //console.log('Energy level', this.character.energy);
                 }
             });
@@ -194,6 +194,16 @@ stopChick(){
         chick.stopChick();
 
     });
+}
+
+restartGameW(){
+    this.energy = 100;
+    document.getElementById('Restart-game').classList.add('d-none');
+    document.getElementById('you-lost').classList.add('d-none');
+    //Define canvas in html Element with id= "canvas"
+    loadChickens();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
 }
 
     draw(){

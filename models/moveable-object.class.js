@@ -10,6 +10,7 @@ class MovableObject extends DrawableObject {
     fromTop = false;
 
     nearEndboss = false;
+    isDead = false;
 
 
     offset = {
@@ -65,17 +66,19 @@ class MovableObject extends DrawableObject {
 
     hit(amount){
         this.energy -= 5 * amount;
-        if(this.energy < 0){
+        if(this.energy <= 0){
             this.energy = 0;
+            this.isDead = true;
+
         } else {
             this.lastHit = new Date().getTime();
         }
         //console.log(this.energy)
     }
 
-    isDead() {
+    /* isDead() {
         return this.energy == 0;
-    }
+    } */
 
     isHurt(){
         let timepassed = new Date().getTime() - this.lastHit; // Difference in ms

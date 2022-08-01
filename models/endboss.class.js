@@ -81,7 +81,7 @@ animate(){
     },150);
 
     setInterval(()=> {
-        if(this.isDead()) {
+        if(this.isDead == true) {
             this.playAnimation(this.IMAGES_DEAD);
             this.speed = 0;
             //this.dying_sound.play();

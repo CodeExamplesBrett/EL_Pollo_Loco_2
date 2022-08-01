@@ -95,7 +95,7 @@ class Character extends MovableObject {
         setInterval(()=> {
             this.dying_sound.pause();
             this.hurt_sound.pause();
-            if(this.isDead()) {
+            if(this.isDead == true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.dying_sound.play();
                 
