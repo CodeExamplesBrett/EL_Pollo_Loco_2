@@ -80,7 +80,7 @@ class Character extends MovableObject {
                 this.otherDirection = true; 
                 this.walking_sound.play();
             }
-
+        
             //console.log('this.speedY', this.speedY);
             if(this.world.keyboard.UP && !this.IsAboveGround()){
                 this.jump();
@@ -98,6 +98,7 @@ class Character extends MovableObject {
             if(this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.dying_sound.play();
+                
 
             } else if (this.isHurt() && !this.IsAboveGround()){
                     this.playAnimation(this.IMAGES_HURT);

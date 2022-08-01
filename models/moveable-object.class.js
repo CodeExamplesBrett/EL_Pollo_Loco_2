@@ -60,6 +60,7 @@ class MovableObject extends DrawableObject {
             this.x + this.width > mo.x &&
             this.x + this.width < (mo.x + mo.width + 70); 
             
+            
     }
 
     hit(amount){

@@ -32,11 +32,11 @@ class Chick extends MovableObject {
     }
 
     animate(){
-        setInterval(() => {
+        this.moveInt = setInterval(() => {
             this.moveLeft();
             }, 1000/60);
 
-        setInterval(()=> {
+        this.animationInt = setInterval(()=> {
             this.playAnimation(this.IMAGES_WALKING);
         },150);
 
@@ -46,5 +46,13 @@ class Chick extends MovableObject {
             }      
         },50);
     }
+
+    stopChick(){
+        clearInterval(this.animationInt);
+        clearInterval(this.moveInt);
+    }
+
+
+
 
 }

@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let restart = false;
 
 function startGame(){
     document.getElementById('startScreen').classList.add('d-none');
@@ -9,11 +10,21 @@ function startGame(){
     loadChickens();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    
-    
+
     console.log('My Character is', world.character);
-    
 }
+
+function RestartGame(){
+    document.getElementById('Restart-game').classList.add('d-none');
+    document.getElementById('you-lost').classList.add('d-none');
+    //Define canvas in html Element with id= "canvas"
+    loadChickens();
+    restart = true;
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+
+}
+
 
 window.addEventListener('keydown', (e)=> {
     if(e.keyCode == 39){

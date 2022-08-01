@@ -29,13 +29,17 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions()
-            this.checkThrowObjects()
+            this.checkCollisions();
+            this.checkCollisionsChick();
+            this.checkCollisionsEndboss()
+            this.checkThrowObjects();
             this.checkCollisionsCoin();
             this.checkCollisionsBottle();
             this.checkCollisionsThrowObjects();
             this.checkCollisionsTop();
+            this.checkCollisionsTopChick();
             this.checkNearEndboss();
+            this.checkGameOver();
             },100);
         }
 
@@ -49,8 +53,8 @@ class World {
     }
 
     checkCollisions(){
-            this.level.enemies.forEach((enemy)=> {
-                if(this.character.isColliding(enemy) && !enemy.dead && !this.character.isCollidingTop(enemy)) {
+            this.level.chickens.forEach((chicken)=> {
+                if(this.character.isColliding(chicken) && !chicken.dead && !this.character.isCollidingTop(chicken)) {
                     //console.log('Collision with Character', enemy);
                     this.character.hit(1);
                     this.statusBar.setPercentage(this.character.energy);
@@ -59,6 +63,28 @@ class World {
                 }
             });
     }
+
+    checkCollisionsChick(){
+        this.level.chicks.forEach((chick)=> {
+            if(this.character.isColliding(chick) && !chick.dead && !this.character.isCollidingTop(chick)) {
+                //console.log('Collision with Character', enemy);
+                this.character.hit(1);
+                this.statusBar.setPercentage(this.character.energy);
+                console.log('character e', this.character.energy)
+                //console.log('Energy level', this.character.energy);
+            }
+        });
+}
+
+checkCollisionsEndboss(){
+        if(this.character.isColliding(this.level.endboss[0])) {
+            //console.log('Collision with Character', enemy);
+            this.character.hit(1);
+            this.statusBar.setPercentage(this.character.energy);
+            console.log('character e', this.character.energy)
+            //console.log('Energy level', this.character.energy);
+        } 
+}
 
     checkCollisionsCoin(){
         this.level.coins.forEach((coin, index)=> {
@@ -89,13 +115,13 @@ class World {
 checkCollisionsThrowObjects(){     // bottle with endboss
     if(this.throwableObjects.length > 0){
         this.throwableObjects.forEach( (bottle) => {
-            if(this.level.enemies[0].isColliding(bottle) ){
+            if(this.level.endboss[0].isColliding(bottle) ){
                 let index = this.throwableObjects.indexOf(bottle)
                 this.throwableObjects.splice(index, 1);
                 console.log('Collision with bottle', bottle);
-                this.level.enemies[0].hit(2);
-                this.statusBarEndboss.setPercentage(this.level.enemies[0].energy);
-                console.log('end e',this.level.enemies[0].energy)
+                this.level.endboss[0].hit(2);
+                this.statusBarEndboss.setPercentage(this.level.endboss[0].energy);
+                console.log('end e',this.level.endboss[0].energy)
     
                 //this.lifeBarEndboss.setPercentage(this.level.enemies[0].energy);
                 //this.level.enemies[0].hurt = true;
@@ -106,17 +132,27 @@ checkCollisionsThrowObjects(){     // bottle with endboss
 }
 
 checkCollisionsTop(){
-    this.level.enemies.forEach((enemy, index)=> {
-        if(this.character.isCollidingTop(enemy) && this.character.speedY < 0) {
+    this.level.chickens.forEach((chicken, index)=> {
+        if(this.character.isCollidingTop(chicken) && this.character.speedY < 0) {
             //console.log('Collision Top', enemy);
             this.deadenemies++;
             console.log('from top', this.fromTop);
-            this.level.enemies[index].dead = true;
-            this.level.enemies[index].speed = 0;
-            
+            this.level.chickens[index].dead = true;
+            this.level.chickens[index].speed = 0;
+             //console.log('from top', enemy)
+        }
+    }); 
+}
 
-            
-            //console.log('from top', enemy)
+checkCollisionsTopChick(){
+    this.level.chicks.forEach((chick, index)=> {
+        if(this.character.isCollidingTop(chick) && this.character.speedY < 0) {
+            //console.log('Collision Top', enemy);
+            this.deadenemies++;
+            console.log('from top', this.fromTop);
+            this.level.chicks[index].dead = true;
+            this.level.chicks[index].speed = 0;
+             //console.log('from top', enemy)
         }
     }); 
 }
@@ -130,14 +166,35 @@ checkCollisionsTop(){
 } */
 
 checkNearEndboss(){
-    if(this.character.x > 2100){
-        this.level.enemies[0].moveEndboss();
+    if(this.character.x > 2000){
+        this.level.endboss[0].moveEndboss();
     }
 }
 
+checkGameOver(){
+    if (this.character.energy == 0){
+        document.getElementById('you-lost').classList.remove('d-none');
+        this.stopChicken();
+        this.stopChick();
+        //this.character.dying_sound.pause();
+        document.getElementById('Restart-game').classList.remove('d-none');
+}  else if(this.level.endboss[0].energy == 0) {
+        document.getElementById('game-over').classList.remove('d-none');
+}
+} 
 
-         
-         
+stopChicken() {
+    this.level.chickens.forEach((chicken) => {
+        chicken.stopChicken();
+    });
+}
+
+stopChick(){
+    this.level.chicks.forEach((chick) => {
+        chick.stopChick();
+
+    });
+}
 
     draw(){
         //clears / deletes the canvas
@@ -153,8 +210,9 @@ checkNearEndboss(){
         
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
-        if(this.character.x > 1800){
-            this.addToMap(this.statusBarEndboss);}
+
+        this.DrawEndbossStatusbar();
+
         this.ctx.translate(this.camera_x, 0); // Forwards
          //  ------- Space for fixed objects --------
 
@@ -164,7 +222,10 @@ checkNearEndboss(){
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
-        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.chickens);
+        this.addObjectsToMap(this.level.chicks);
+        this.addObjectsToMap(this.level.endboss);
+       
         this.ctx.translate(-this.camera_x, 0);
         
     
@@ -175,6 +236,12 @@ checkNearEndboss(){
         });
         
     };
+
+    DrawEndbossStatusbar(){
+        if(this.character.x > 1800){
+            this.addToMap(this.statusBarEndboss);
+        }
+    }
 
     addObjectsToMap(objects){
         objects.forEach(o => {

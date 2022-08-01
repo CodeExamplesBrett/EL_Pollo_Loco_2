@@ -42,10 +42,13 @@
 <div class="frame">
     <div id="game-container" class="game-container">
         <img src="./img/9.Intro _ Outro Image/Start Screen/Opción 1.png" class="start-screen-img" id="startScreen">
-    
+        <img src="./img/9.Intro _ Outro Image/_Game over_ screen/1.you lost.png" class="start-screen-img d-none" id="you-lost">
+        <img src="./img/9.Intro _ Outro Image/_Game over_ screen/3.Game over.png" class="start-screen-img d-none" id="game-over">
+        
         <canvas id="canvas" width="720" height="480"></canvas>
 
         <button class="start-game" id="start-game"  onclick="startGame()">Start Game</button>
+        <button class="start-game d-none" id="Restart-game"  onclick="RestartGame()">Restart Game</button>
 
         <div class="button-description" id="button-description">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="black" class="bi bi-caret-left-square svg-symbol" viewBox="0 0 16 16">

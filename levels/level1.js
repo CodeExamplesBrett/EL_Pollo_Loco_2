@@ -2,19 +2,25 @@ let level1;
 function loadChickens() {
 level1 = new Level(
     [
-    new Endboss(),
     new Chicken(),
     new Chicken(),
     new Chicken(),
     new Chicken(),
-    new Chicken(),
+    new Chicken()
+    ],
+
+    [
     new Chick(),
     new Chick(),
     new Chick(),
     new Chick(),
     new Chick()
-    
     ],
+
+    [
+        new Endboss()
+    ],
+
     [
         new Cloud()
     ],
