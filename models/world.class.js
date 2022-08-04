@@ -196,14 +196,24 @@ stopChick(){
     });
 }
 
+startGameW(){
+    console.log('start')
+}
+
+
 restartGameW(){
-    this.energy = 100;
+    //reloads webpage
+    location.reload();
+    
+    /* this.character.energy = 100;
     document.getElementById('Restart-game').classList.add('d-none');
     document.getElementById('you-lost').classList.add('d-none');
     //Define canvas in html Element with id= "canvas"
     loadChickens();
+    this.character.isDead = false;
+    this.character.dying_sound.pause();
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard); */
 }
 
     draw(){
