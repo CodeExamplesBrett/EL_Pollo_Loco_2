@@ -70,7 +70,7 @@ class Character extends MovableObject {
     }
 
     animate(){
-        setInterval(()=> {
+        this.walking_jumping = setInterval(()=> {
             this.walking_sound.pause();
             if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x){
                 this.moveRight();
@@ -94,7 +94,7 @@ class Character extends MovableObject {
         }, 1000/60);
 
 
-        setInterval(()=> {
+        this.dying_hurt = setInterval(()=> {
             this.dying_sound.pause();
             this.hurt_sound.pause();
             if(this.isDead == true) {
@@ -114,6 +114,11 @@ class Character extends MovableObject {
                 }
             }  
         },50);
+    }
+
+    stopCharacter(){
+        clearInterval(this.dying_hurt);
+        clearInterval(this.walking_jumping);
     }
 
 }

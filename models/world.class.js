@@ -176,6 +176,9 @@ checkGameOver(){
         document.getElementById('you-lost').classList.remove('d-none');
         this.stopChicken();
         this.stopChick();
+        this.stopCharacter();
+        this.character.speed = 0;
+        this.level.endboss[0].speed = 0;
         //this.character.dying_sound.pause();
         document.getElementById('Restart-game').classList.remove('d-none');
 }  else if(this.level.endboss[0].energy == 0) {
@@ -196,6 +199,10 @@ stopChick(){
         chick.stopChick();
 
     });
+}
+
+stopCharacter(){
+    this.character.stopCharacter();
 }
 
 startGameW(){
