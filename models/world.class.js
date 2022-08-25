@@ -180,6 +180,8 @@ checkGameOver(){
         document.getElementById('Restart-game').classList.remove('d-none');
 }  else if(this.level.endboss[0].energy == 0) {
         document.getElementById('game-over').classList.remove('d-none');
+        document.getElementById('Restart-game').classList.remove('d-none');
+
 }
 } 
 
