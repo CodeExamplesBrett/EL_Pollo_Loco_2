@@ -11,6 +11,10 @@ class World {
     bottleBar = new BottleBar();
     throwableObjects = [];
 
+    endbossActive = false;
+    LastendbossActive = false;
+
+
     gameOver = false;
      
     constructor(canvas, keyboard) {
@@ -273,8 +277,12 @@ restartGameW(){
 
     DrawEndbossStatusbar(){
         if(this.character.x > 1800){
+            this.endbossActive = true;
             this.addToMap(this.statusBarEndboss);
         }
+             if(this.endbossActive != this.LastendbossActive){
+                this.addToMap(this.statusBarEndboss);
+            }   
     }
 
     addObjectsToMap(objects){
