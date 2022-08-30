@@ -28,6 +28,7 @@ class MovableObject extends DrawableObject {
     };
 
     collectBottle_sound = new Audio('./audio/bottle.mp3');
+    collectCoin_sound = new Audio('./audio/coin.mp3');
 
     applyGravity() {
         setInterval(()=>{
@@ -91,6 +92,7 @@ class MovableObject extends DrawableObject {
         if(this.coinCollection >= 5){
             this.coinCollection = 5; 
         } 
+        this.collectCoin_sound.play();
         console.log('collection', this.coinCollection)
     }
 

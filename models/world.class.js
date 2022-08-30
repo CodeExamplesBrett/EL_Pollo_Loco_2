@@ -241,9 +241,12 @@ restartGameW(){
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0); // Back
         //  ------- Space for fixed objects --------
+        
         this.addToMap(this.statusBar);
         
         this.addToMap(this.coinBar);
@@ -255,8 +258,8 @@ restartGameW(){
          //  ------- Space for fixed objects --------
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.coins);
+        
+        
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
 
