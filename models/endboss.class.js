@@ -67,20 +67,30 @@ constructor() {
 
 animate(){
 
-    setInterval(() => {
+    this.move();
+    this.attack();
+    this.Dead_Hurt(); 
+}
+
+move(){
+    this.moveInt = setInterval(() => {
         if(this.nearEndboss == true){
         this.moveLeft();}
         //this.playAnimation(this.IMAGES_WALKING);
     }, 1000/60);
+}
 
-    setInterval(()=> {
+attack(){
+    this.angry_attack = setInterval(()=> {
         if(this.nearEndboss == true){
             this.playAnimation(this.IMAGES_ATTACK);
         } else if (this.nearEndboss == false){
         this.playAnimation(this.IMAGES_ANGRY);}
     },150);
+}
 
-    setInterval(()=> {
+Dead_Hurt(){
+    this.animationInt = setInterval(()=> {
         if(this.isDead == true) {
             this.playAnimation(this.IMAGES_DEAD);
             this.speed = 0;
@@ -93,6 +103,13 @@ animate(){
         } 
             
     },50);
+}
+
+
+stopEndboss() {
+    clearInterval(this.animationInt);
+    clearInterval(this.moveInt);
+    clearInterval(this.angry_attack);
 }
 
 }
