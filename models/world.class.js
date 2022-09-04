@@ -177,9 +177,12 @@ checkGameOver(){
             document.getElementById('game-over').classList.remove('d-none');
             document.getElementById('Restart-game').classList.remove('d-none');
             this.stopObjectActions_Sounds();
+            this.level.endboss[0].Dead_Hurt();
 
     }
 } 
+
+
 
 stopObjectActions_Sounds(){
         this.stopChicken();

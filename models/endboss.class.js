@@ -46,7 +46,7 @@ IMAGES_HURT = [
                  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
 ];
  
-    IMAGES_DEAD = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
+IMAGES_DEAD = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
                     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
                     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png' 
 ];
