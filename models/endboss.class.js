@@ -13,7 +13,7 @@ class Endboss extends MovableObject {
     };
     
 
-    IMAGES_ANGRY = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
+IMAGES_ANGRY = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G7.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G8.png',
@@ -23,7 +23,7 @@ class Endboss extends MovableObject {
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G12.png'
 ];
 
-    IMAGES_WALKING = ['img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
+IMAGES_WALKING = ['img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G2.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G3.png',
                         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G4.png'
@@ -50,7 +50,6 @@ IMAGES_DEAD = [  'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24
                     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
                     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png' 
 ];
-
 
 
 constructor() {
@@ -100,8 +99,7 @@ Dead_Hurt(){
              (this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT);
                 //this.hurt_sound.play();
-        } 
-            
+        }   
     },50);
 }
 

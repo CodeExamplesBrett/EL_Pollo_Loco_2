@@ -192,6 +192,7 @@ stopObjectActions_Sounds(){
         this.stopWorld();
         this.character.speed = 0;
         this.level.endboss[0].speed = 0;
+        this.character.walking_sound.pause();
 }
 
 stopChicken() {
