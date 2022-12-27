@@ -93,7 +93,7 @@ class MovableObject extends DrawableObject {
             this.coinCollection = 5; 
         } 
         this.collectCoin_sound.play();
-        console.log('collection', this.coinCollection)
+        //console.log('collection', this.coinCollection)
     }
 
     collectBottle(){
@@ -102,7 +102,7 @@ class MovableObject extends DrawableObject {
             this.bottleCollection = 10; 
         } 
         this.collectBottle_sound.play();
-        console.log('collection bottle', this.bottleCollection)
+        //console.log('collection bottle', this.bottleCollection)
     }
 
     playAnimation(images) {

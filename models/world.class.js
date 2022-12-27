@@ -78,7 +78,7 @@ class World {
                 //console.log('Collision with Character', enemy);
                 this.character.hit(1);
                 this.statusBar.setPercentage(this.character.energy);
-                console.log('character e', this.character.energy)
+                //console.log('character e', this.character.energy)
                 //console.log('Energy level', this.character.energy);
             }
         });
@@ -126,10 +126,10 @@ checkCollisionsThrowObjects(){     // bottle with endboss
             if(this.level.endboss[0].isColliding(bottle) ){
                 let index = this.throwableObjects.indexOf(bottle)
                 this.throwableObjects.splice(index, 1);
-                console.log('Collision with bottle', bottle);
+                //console.log('Collision with bottle', bottle);
                 this.level.endboss[0].hit(2);
                 this.statusBarEndboss.setPercentage(this.level.endboss[0].energy);
-                console.log('end e',this.level.endboss[0].energy)                   
+                //console.log('end e',this.level.endboss[0].energy)                   
             }
         })
     }
@@ -140,7 +140,7 @@ checkCollisionsTop(){
         if(this.character.isCollidingTop(chicken) && this.character.speedY < 0) {
             //console.log('Collision Top', enemy);
             this.deadenemies++;
-            console.log('from top', this.fromTop);
+            //console.log('from top', this.fromTop);
             this.level.chickens[index].dead = true;
             this.level.chickens[index].speed = 0;
              //console.log('from top', enemy)
@@ -153,7 +153,7 @@ checkCollisionsTopChick(){
         if(this.character.isCollidingTop(chick) && this.character.speedY < 0) {
             //console.log('Collision Top', enemy);
             this.deadenemies++;
-            console.log('from top', this.fromTop);
+            //console.log('from top', this.fromTop);
             this.level.chicks[index].dead = true;
             this.level.chicks[index].speed = 0;
              //console.log('from top', enemy)
@@ -217,7 +217,7 @@ stopEndboss(){
 }
 
 startGameW(){
-    console.log('start')
+    //console.log('start')
 }
 
 restartGameW(){
