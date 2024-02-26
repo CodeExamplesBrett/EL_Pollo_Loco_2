@@ -9,6 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    position: relative;
 }
 .d-none{
     display: none;
@@ -21,10 +22,33 @@ body{
     border-width: 2px;
     border-color: rgb(163, 160, 160);  */
     display: block;
-    
-    
-
 }
+
+.loader {
+    z-index: 2;
+    top: calc(50% - 84px); /* Center vertically and then move up by 25px */
+    left: calc(50% - 54px);
+    transform: translate(-50%, -50%); 
+    position:absolute;
+    border: 10px solid #f3f3f3; /* Light grey background */
+    border-top: 10px solid #3498db; /* Blue color */
+    border-radius: 50%; /* Circular shape */
+    width: 70px; /* Size of the loader */
+    height: 70px; /* Size of the loader */
+    animation: spin 1s linear infinite; /* Animation */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loader-background{
+    background-color: #3498db;
+  }
+  
+
+
 
 .game-container{
     position: relative;
