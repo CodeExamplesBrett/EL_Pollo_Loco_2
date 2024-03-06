@@ -8,17 +8,20 @@ async function startGame(){
     document.getElementById('loadingScreenBack').classList.remove('d-none');
     document.getElementById('start-game').classList.add('d-none');
 
-    document.getElementById('Restart-game').classList.add('d-none');
-    document.getElementById('you-lost').classList.add('d-none');
-    document.getElementById('game-over').classList.add('d-none');
+    
     //Define canvas in html Element with id= "canvas"
+    //debugger;
     loadChickens();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
+    document.getElementById('Restart-game').classList.add('d-none');
+    document.getElementById('you-lost').classList.add('d-none');
+    document.getElementById('game-over').classList.add('d-none');
+
     try {
-        // Wait for assets to load
-        await world.loadAssets();
+        await PreloadAssets.loadAssets();
+        await PreloadAssets.loadAudio();
         
         // Once assets are loaded, remove the loading screen and start the game loop
         document.getElementById('loadingScreen').style.display = 'none';
