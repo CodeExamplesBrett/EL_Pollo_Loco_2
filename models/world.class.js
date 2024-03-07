@@ -195,6 +195,7 @@ class World {
     this.stopChick();
     this.stopCharacter();
     this.stopEndboss();
+    this.stopCloud()
     this.stopWorld();
     this.character.speed = 0;
     this.level.endboss[0].speed = 0;
@@ -219,6 +220,12 @@ class World {
 
   stopEndboss() {
     this.level.endboss[0].stopEndboss();
+  }
+
+  stopCloud(){
+    this.level.clouds.forEach((cloud) => {
+      cloud.stopCloud();
+    })
   }
 
   startGameW() {
@@ -255,8 +262,9 @@ class World {
   DrawBackgroundLayers() {
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
-    this.addObjectsToMap(this.level.coins);
     this.addObjectsToMap(this.level.clouds);
+    this.addObjectsToMap(this.level.coins);
+    
   }
 
   DrawFixedLayers() {
